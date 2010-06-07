@@ -1,12 +1,12 @@
 class GitSvn
   def commit
-    git = Git.new
+    git = RakeCommit::Git.new
     git.add
     git.status
     git_svn_commit_with_message
     rebase
     Shell.system "rake"
-    if ok_to_check_in?
+    if RakeCommit.ok_to_check_in?
       dcommit
     end
   end

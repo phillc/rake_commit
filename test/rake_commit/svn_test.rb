@@ -1,7 +1,6 @@
-require File.dirname(__FILE__) + "/test_helper"
+require File.dirname(__FILE__) + "/../test_helper"
 
-class SvnTest < Test::Unit::TestCase
-
+class SvnTest < Test::Unit::TestCase  
   def test_st_displays_svn_status
     Shell.expects("system").with("svn st")
     Svn.new.status

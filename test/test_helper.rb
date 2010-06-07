@@ -3,13 +3,14 @@ unless defined?(TEST_HELPER_LOADED)
 
   require "rubygems"
   require "rake"
-  Dir.glob(File.dirname(__FILE__) + "/../lib/tasks/**/*.rake").each { |rakefile| load rakefile }
-  require File.dirname(__FILE__) + "/../lib/commit"
+  require File.dirname(__FILE__) + "/../lib/rake_commit"
 
   require "test/unit"
   require "mocha"
 
   Test::Unit::TestCase.class_eval do
+    include RakeCommit
+    
     def capture_stdout(&block)
       old_stdout, $stdout = $stdout, StringIO.new
       yield
