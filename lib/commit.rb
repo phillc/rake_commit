@@ -6,12 +6,12 @@ end
 
 class Commit
   def git?
-    `git symbolic-ref HEAD 2>/dev/null`
+    Shell.pure_backtick("git symbolic-ref HEAD 2>/dev/null")
     $?.success?
   end
 
   def git_svn?
-    `git svn info 2> /dev/null`
+    Shell.pure_backtick("git svn info 2> /dev/null")
     $?.success?
   end
 
@@ -51,7 +51,7 @@ end
 
 def sh_with_output(command)
   puts command
-  output = `#{command}`
+  output = Shell.pure_backtick("#{command}")
   puts output
   raise unless $?.success?
   output
